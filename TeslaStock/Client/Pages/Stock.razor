@@ -1,0 +1,36 @@
+﻿@page "/stock"
+
+@using TeslaStock.Client.Services
+@inherits StockBase
+@inject IStockService Service;
+
+<h3>Tesla Stock</h3>
+@if (Stock == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+
+
+    <table class="table table-striped">
+        <tr>
+            <th>Symbol</th>
+            <th>Open</th>
+            <th>Close</th>
+            <th>High</th>
+            <th>Low</th>
+        </tr>
+
+        @foreach (var stock in Stock.data)
+        {
+            <tr>
+                <td>@stock.symbol</td>
+                <td>@stock.open</td>
+                <td>@stock.close</td>
+                <td>@stock.high</td>
+                <td>@stock.low</td>
+            </tr>
+        }
+    </table>
+}

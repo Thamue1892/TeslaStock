@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Linq;
+using System;
+using TeslaStock.Client.Services;
 
 namespace TeslaStock.Server
 {
@@ -24,6 +23,10 @@ namespace TeslaStock.Server
         {
 
             services.AddControllersWithViews();
+            services.AddHttpClient<IStockService, StockService>(client =>
+            {
+                client.BaseAddress = new Uri("http://api.marketstack.com/v1/");
+            });
             services.AddRazorPages();
         }
 
