@@ -17,6 +17,6 @@ namespace TeslaStock.Shared.Models
         public float split_factor { get; set; }
         public string symbol { get; set; }
         public string exchange { get; set; }
-        public DateTime date { get; set; }
+        public string date { get; set; }
     }
 }

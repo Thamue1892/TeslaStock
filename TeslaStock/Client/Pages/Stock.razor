@@ -20,6 +20,7 @@ else
             <th>Close</th>
             <th>High</th>
             <th>Low</th>
+            <th>Date</th>
         </tr>
 
         @foreach (var stock in Stock.data)
@@ -30,6 +31,7 @@ else
                 <td>@stock.close</td>
                 <td>@stock.high</td>
                 <td>@stock.low</td>
+                <td>@stock.date</td>
             </tr>
         }
     </table>

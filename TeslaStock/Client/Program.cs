@@ -13,10 +13,12 @@ namespace TeslaStock.Client
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
+            var baseUri = builder.HostEnvironment.BaseAddress + "api/";
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            builder.Services.AddScoped<IStockService, StockService>();
+            builder.Services.AddHttpClient<IStockService, StockService>(client =>
+                client.BaseAddress = new Uri(baseUri + "stock/"));
 
             await builder.Build().RunAsync();
         }

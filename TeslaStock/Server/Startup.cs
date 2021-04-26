@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using TeslaStock.Client.Services;
+using TeslaStock.Server.Services;
 
 namespace TeslaStock.Server
 {
@@ -23,10 +23,8 @@ namespace TeslaStock.Server
         {
 
             services.AddControllersWithViews();
-            services.AddHttpClient<IStockService, StockService>(client =>
-            {
-                client.BaseAddress = new Uri("http://api.marketstack.com/v1/");
-            });
+
+            services.AddHttpClient<IStockService, StockService>(client =>client.BaseAddress = new Uri("http://api.marketstack.com/v1/"));
             services.AddRazorPages();
         }
 
