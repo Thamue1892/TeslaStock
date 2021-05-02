@@ -4,6 +4,7 @@ namespace TeslaStock.Shared.Models
 {
     public class Datum
     {
+        public int Id { get; set; }
         public float open { get; set; }
         public float high { get; set; }
         public float low { get; set; }

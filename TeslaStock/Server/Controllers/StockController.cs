@@ -25,8 +25,9 @@ namespace TeslaStock.Server.Controllers
         {
             _logger.LogDebug("Getting stock");
             try
-            {
-                return _stockService.GetStockData();
+            {  
+                var response = _stockService.GetStockData();
+                return response;
             }
             catch (Exception ex)
             {
@@ -38,3 +39,4 @@ namespace TeslaStock.Server.Controllers
 
     }
 }
+    

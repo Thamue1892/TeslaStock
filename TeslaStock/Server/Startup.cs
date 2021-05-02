@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using Microsoft.EntityFrameworkCore;
+using TeslaStock.Server.Data;
 using TeslaStock.Server.Services;
 
 namespace TeslaStock.Server
@@ -21,10 +23,12 @@ namespace TeslaStock.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllersWithViews();
 
-            services.AddHttpClient<IStockService, StockService>(client =>client.BaseAddress = new Uri("http://api.marketstack.com/v1/"));
+            services.AddHttpClient<IStockService, StockService>(client =>client.BaseAddress = new Uri("http://api.marketstack.com/v1/?"));
             services.AddRazorPages();
         }
 
